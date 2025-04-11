@@ -102,3 +102,14 @@ docker compose logs -f ollama-proxy
 # or 
 docker logs -f ollama-proxy 
 ```
+
+### Nginx Configuration
+- Nginx is configured with token-based authentication for all requests
+- Uses a streamlined proxy configuration optimized for performance
+- Error log level is set to `notice` for production environments
+- Custom log format includes authenticated user information
+- WebSocket support is enabled for streaming responses
+- Full CORS support for browser extensions with proper preflight handling
+- Sets Host header to `127.0.0.1` to bypass Ollama's origin restrictions
+
+### System Configuration
