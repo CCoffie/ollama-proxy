@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  ollama-proxy:
+    build: .
+    container_name: ollama-proxy
+    # Use host networking to allow the container to directly access
+    # services running on the host's localhost (like Ollama).
+    # This also means the container's ports (e.g., Nginx on 80)
+    # are directly exposed on the host network.
+    network_mode: host
+    env_file:
+      - .env
+    volumes:
+      # Mount a named volume to persist token data inside the container at /data
+      # The application will create /data/tokens.json within this volume.
+      - ollama-proxy-data:/data
+    restart: unless-stopped
+
+volumes:
+  ollama-proxy-data: 
