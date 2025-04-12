@@ -67,7 +67,13 @@ RUN addgroup -S nginx && \
     adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx && \
     mkdir -p /var/log/nginx && \
     chown -R nginx:nginx /var/log/nginx && \
-    mkdir -p /var/cache/nginx && \
+    mkdir -p /var/cache/nginx/client_temp && \
+    mkdir -p /var/cache/nginx/proxy_temp && \
+    mkdir -p /var/cache/nginx/fastcgi_temp && \
+    mkdir -p /var/cache/nginx/uwsgi_temp && \
+    mkdir -p /var/cache/nginx/scgi_temp && \
+    chmod 755 /var/cache/nginx && \
+    chmod -R 755 /var/cache/nginx/* && \
     chown -R nginx:nginx /var/cache/nginx
 
 # Copy compiled Nginx files from builder stage
